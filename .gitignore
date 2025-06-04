@@ -1,0 +1,8 @@
+# Byte-compiled / virtual-env stuff
+__pycache__/
+*.py[cod]
+*.so
+.venv/
+env/
+# Logs & checkpoints
+logs/
