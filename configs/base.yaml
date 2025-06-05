@@ -1,0 +1,32 @@
+# configs/base.yaml
+
+# Common defaults shared by all experiment configs
+
+defaults:
+  - env: push
+  - agent: sac
+  - callbacks
+  - _self_
+
+
+experiment: exp_sac
+
+# Global training configuration
+train:
+  total_timesteps: 100
+  n_envs: 1
+  seed: 0
+  device: cuda
+
+# Evaluation
+eval:
+  n_episodes: 10
+  render: false
+
+# Hydra logging/output
+hydra:
+  run:
+    dir: logs/${now:%Y-%m-%d_%H-%M-%S}/${experiment}/${train.seed}
+  sweep:
+    dir: logs/multirun_${now:%Y-%m-%d_%H-%M-%S}
+    subdir: ${experiment}/seed_${train.seed}

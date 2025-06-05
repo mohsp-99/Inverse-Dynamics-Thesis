@@ -3,6 +3,12 @@ __pycache__/
 *.py[cod]
 *.so
 .venv/
-env/
 # Logs & checkpoints
 logs/
+.python-version
+.vscode
+.pre-commit-config.yaml
+outputs
+videos
+checkpoints
+best

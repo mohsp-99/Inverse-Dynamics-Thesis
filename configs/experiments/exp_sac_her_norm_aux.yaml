@@ -1,0 +1,9 @@
+# configs/experiments/exp_sac_her_norm_aux.yaml
+
+defaults:
+  - base
+  - override agent: sac_her_norm_aux
+
+experiment: exp_sac_her_norm_aux
+train:
+  seed: 0

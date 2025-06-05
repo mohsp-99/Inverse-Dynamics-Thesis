@@ -1,0 +1,13 @@
+# configs/experiments/exp_full.yaml
+
+defaults:
+  - base
+  - override agent: sac_her_norm_aux
+
+experiment: exp_full
+
+train:
+  seed: 0
+
+env:
+  dense_reward: true

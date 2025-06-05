@@ -1,0 +1,15 @@
+# configs/callbacks.yaml
+
+callbacks:
+  checkpoint:
+    save_freq: 100_000
+    save_replay_buffer: true
+
+  eval:
+    eval_freq: 50_000
+    n_eval_episodes: 5
+    deterministic: true
+
+  video:
+    record: true
+    record_freq: 100_000

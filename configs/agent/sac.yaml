@@ -1,0 +1,21 @@
+name: SAC
+policy: MultiInputPolicy
+
+# Core algorithm settings
+learning_rate: 3e-4
+buffer_size: 1_000_000
+learning_starts: 5_000
+batch_size: 256
+tau: 0.005
+gamma: 0.99
+train_freq: 1
+gradient_steps: 1
+ent_coef: auto
+use_sde: false
+
+# Policy architecture
+net_arch: [256, 256]
+
+# Auxiliary head settings
+auxiliary:
+  enabled: false
