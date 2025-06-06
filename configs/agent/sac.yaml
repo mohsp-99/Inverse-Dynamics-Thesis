@@ -16,6 +16,8 @@ use_sde: false
 # Policy architecture
 net_arch: [256, 256]
 
+her: false
+
 # Auxiliary head settings
 auxiliary:
   enabled: false

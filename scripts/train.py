@@ -6,6 +6,7 @@ import os
 from pathlib import Path
 from stable_baselines3 import SAC, TD3
 from stable_baselines3.common.vec_env import DummyVecEnv, VecNormalize
+from stable_baselines3.her.her_replay_buffer import HerReplayBuffer
 from utils.callbacks import build_default_callbacks
 from envs.push_wrappers import make_push_env
 from agents.sac_id_aux import SACIDAux
@@ -36,17 +37,27 @@ def main(cfg: DictConfig):
     train_env = build_env(cfg, seed=seed, eval=False)
 
     # Agent selection
-    agent_name = cfg.agent.name
+    agent_name = cfg.experiment.agent.name
     AgentClass = AGENT_CLASSES.get(agent_name)
     if AgentClass is None:
         raise ValueError(f"Unknown agent type: {agent_name}")
 
     # Agent instantiation
-    agent_kwargs = {k: v for k, v in cfg.agent.items() if k not in ["name", "policy", "auxiliary", "net_arch"]}
-    policy_kwargs = dict(net_arch=list(cfg.agent.net_arch))
+    agent_kwargs = {
+            k: v
+            for k, v in cfg.experiment.agent.items()
+            if k not in ["name", "policy", "auxiliary", "net_arch", "her"]
+    }    
+    if getattr(cfg.experiment.agent, "her", False):
+        agent_kwargs["replay_buffer_class"] = HerReplayBuffer
+        agent_kwargs["replay_buffer_kwargs"] = dict(
+            n_sampled_goal=4,
+            goal_selection_strategy="future",
+        )
+    policy_kwargs = dict(net_arch=list(cfg.experiment.agent.net_arch))
 
     model = AgentClass(
-        policy=cfg.agent.policy,
+        policy=cfg.experiment.agent.policy,
         env=train_env,
         seed=seed,
         verbose=1,

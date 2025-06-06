@@ -1,9 +1,9 @@
 # configs/experiments/exp_sac.yaml
 
 defaults:
-  - base
-  - override agent: sac
+  - /agent: sac
 
-experiment: exp_sac
+experiment_name: exp_sac
+
 train:
   seed: 0

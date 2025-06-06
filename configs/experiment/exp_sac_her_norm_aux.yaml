@@ -1,0 +1,10 @@
+# configs/experiments/exp_sac_her_norm_aux.yaml
+
+defaults:
+  - /agent: sac_her_norm_aux
+
+experiment_name: exp_sac_her_norm_aux
+
+
+train:
+  seed: 0
