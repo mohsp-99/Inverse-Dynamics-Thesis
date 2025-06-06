@@ -4,7 +4,7 @@ import hydra
 from omegaconf import DictConfig
 import os
 from pathlib import Path
-from stable_baselines3 import SAC
+from stable_baselines3 import SAC, TD3
 from stable_baselines3.common.vec_env import DummyVecEnv, VecNormalize
 from utils.callbacks import build_default_callbacks
 from envs.push_wrappers import make_push_env
@@ -12,6 +12,7 @@ from agents.sac_id_aux import SACIDAux
 
 AGENT_CLASSES = {
     "SAC": SAC,
+    "TD3": TD3,
     "SAC_ID_AUX": SACIDAux,
 }
 
@@ -57,6 +58,7 @@ def main(cfg: DictConfig):
 
     # Callbacks
     callbacks = build_default_callbacks(cfg, eval_env=build_env(cfg, seed, eval=True), run_dir=run_dir)
+    print(f"[DEBUG] Callbacks list: {callbacks.callbacks}")
 
     # Training
     print(f"[train] Starting learning for {cfg.train.total_timesteps} timesteps …")

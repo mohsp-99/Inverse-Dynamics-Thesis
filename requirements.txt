@@ -1,6 +1,6 @@
 pandas>=2.2
 hydra-core>=1.3
 stable-baselines3[extra]>=2.5
-panda-gym>=3.0.8
+panda-gym
 sb3-contrib
 moviepy

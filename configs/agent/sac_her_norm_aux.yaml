@@ -8,7 +8,7 @@ batch_size: 256
 tau: 0.005
 gamma: 0.99
 train_freq: 1
-gradient_steps: 1
+gradient_steps: 5
 ent_coef: auto
 use_sde: false
 

@@ -7,7 +7,7 @@ dense_reward: false
 
 # Arguments passed to gym.make(env_id, **kwargs)
 kwargs:
-  render_mode: null  # Use 'human' if you want live rendering
+  render_mode: rgb_array  # Use 'human' if you want live rendering
 
 # Table properties
 table:

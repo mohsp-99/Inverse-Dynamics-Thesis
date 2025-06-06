@@ -161,6 +161,12 @@ class RewardShapingWrapper(gym.RewardWrapper):
 
     def get_last_reward_log(self):
         return self._last_log
+    
+    def step(self, action):
+        obs, reward, terminated, truncated, info = self.env.step(action)
+        shaped_reward = self.reward(reward)
+        info.update(self._last_log)
+        return obs, shaped_reward, terminated, truncated, info
 
 
 def make_push_env(cfg: Dict[str, Any], seed: int | None = None, deterministic=False):
@@ -173,8 +179,8 @@ def make_push_env(cfg: Dict[str, Any], seed: int | None = None, deterministic=Fa
     half_size = tuple(table_cfg.get("half_size", (0.5, 0.5)))
     z_th = table_cfg.get("obj_z_threshold", -0.01)
 
-    env = TerminateIfOffTableWrapper(env, table_half_size=half_size, obj_z_threshold=z_th)
-    env = MinObjectGoalDistanceWrapper(env, min_distance=cfg.get("min_obj_goal_dist", 0.05))
+    # env = TerminateIfOffTableWrapper(env, table_half_size=half_size, obj_z_threshold=z_th)
+    # env = MinObjectGoalDistanceWrapper(env, min_distance=cfg.get("min_obj_goal_dist", 0.05))
 
     obs_cfg = cfg.get("obstacle", {})
     n_obs = 0 if deterministic else int(obs_cfg.get("n", 0))

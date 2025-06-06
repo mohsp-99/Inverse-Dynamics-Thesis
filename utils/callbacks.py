@@ -178,7 +178,7 @@ def build_default_callbacks(cfg, eval_env, run_dir):
             from envs.push_wrappers import make_push_env
             return make_push_env(
                 cfg.env,
-                seed=cfg.seed + 999,  # avoid training collision
+                seed=cfg.train.seed + 999,  # avoid training collision
                 deterministic=True
             )
 

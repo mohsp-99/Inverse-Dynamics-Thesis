@@ -13,8 +13,8 @@ experiment: exp_sac
 
 # Global training configuration
 train:
-  total_timesteps: 100
-  n_envs: 1
+  total_timesteps: 1_000_000
+  n_envs: 8
   seed: 0
   device: cuda
 

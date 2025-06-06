@@ -2,7 +2,7 @@
 
 callbacks:
   checkpoint:
-    save_freq: 100_000
+    save_freq: 50_000
     save_replay_buffer: true
 
   eval:
@@ -12,4 +12,4 @@ callbacks:
 
   video:
     record: true
-    record_freq: 100_000
+    record_freq: 20_000
